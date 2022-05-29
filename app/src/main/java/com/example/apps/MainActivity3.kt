@@ -1,19 +1,18 @@
 package com.example.apps
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.apps.databinding.ActivityMain3Binding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
 import edu.co.icesi.semana7kotlina.HTTPSWebUtilDomi
-import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -111,7 +110,7 @@ class MainActivity3 : AppCompatActivity() {
     private fun catchPokemon(view: View){
 
         lifecycleScope.launch(Dispatchers.IO){
-            Firebase.firestore.collection("users").document(pokemon.username).collection("pokemon").document(pokemon.name).set(pokemon)
+            Firebase.firestore.collection("users").document(pokemon.username).collection("pokemon").document(pokemon.id).set(pokemon)
         }
 
     }

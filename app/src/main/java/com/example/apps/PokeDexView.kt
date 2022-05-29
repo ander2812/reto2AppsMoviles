@@ -1,5 +1,6 @@
 package com.example.apps
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
@@ -13,10 +14,11 @@ class PokeDexView(itemView:View) : RecyclerView.ViewHolder(itemView) {
 
     var pokemon: Pokemon? = null
 
-    var nameRow : TextView = itemView.findViewById(R.id.nameText)
-    var dateRow : TextView = itemView.findViewById(R.id.dateText)
-    var imageRow : ImageView = itemView.findViewById(R.id.pImage)
+    private var nameRow : TextView = itemView.findViewById(R.id.nameText)
+    private var dateRow : TextView = itemView.findViewById(R.id.dateText)
+    private var imageRow : ImageView = itemView.findViewById(R.id.pImage)
 
+    @SuppressLint("SimpleDateFormat")
     fun initializer(pokemonView: Pokemon){
         Glide.with(imageRow.context).load(pokemon?.image).into(imageRow)
         nameRow.text = pokemonView.name
@@ -25,7 +27,7 @@ class PokeDexView(itemView:View) : RecyclerView.ViewHolder(itemView) {
         pokemonDetails()
     }
 
-    fun pokemonDetails(){
+    private fun pokemonDetails(){
         imageRow.setOnClickListener {
             val intent = Intent(itemView.context, MainActivity4::class.java)
             intent.putExtra("name", pokemon!!.name)
@@ -36,7 +38,7 @@ class PokeDexView(itemView:View) : RecyclerView.ViewHolder(itemView) {
             intent.putExtra("image", pokemon!!.image)
             intent.putExtra("username", pokemon!!.username)
             intent.putExtra("id", pokemon!!.id)
-            intent.putExtra("date", pokemon!!.date)
+            intent.putExtra("date", dateRow.text.toString())
 
             itemView.context.startActivity(intent)
         }

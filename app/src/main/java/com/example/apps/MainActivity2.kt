@@ -1,4 +1,5 @@
 package com.example.apps
+import android.app.Activity
 import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -99,7 +100,7 @@ class MainActivity2 :
             }
 
             lifecycleScope.launch(Dispatchers.IO){
-                Firebase.firestore.collection("users").document(pokemon.username).collection("pokemon").document(pokemon.name).set(pokemon)
+                Firebase.firestore.collection("users").document(pokemon.username).collection("pokemon").document(pokemon.id).set(pokemon)
             }
 
             getPokemon(pokemon.username)
@@ -166,6 +167,7 @@ class MainActivity2 :
             }
             startActivity(intent)
             finish()
+
 
         }
 }

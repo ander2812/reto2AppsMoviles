@@ -17,10 +17,9 @@ class Adapter : RecyclerView.Adapter<PokeDexView>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokeDexView {
 
-        var inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(parent.context)
         val row = inflater.inflate(R.layout.activity_poke_dex_row, parent, false)
-        val pokeDexView = PokeDexView(row)
-        return pokeDexView
+        return PokeDexView(row)
 
     }
 

@@ -1,10 +1,10 @@
 package com.example.apps
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.apps.databinding.ActivityMain3Binding
 import com.example.apps.databinding.ActivityMain4Binding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,7 +20,6 @@ class MainActivity4 : AppCompatActivity() {
     private var username: String? = null
     private var id: String? = null
     private var image: String? = null
-    private lateinit var pokemon: Pokemon
     private var speed: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +56,11 @@ class MainActivity4 : AppCompatActivity() {
     }
 
     private fun deletePokemon(view: View){
-        pokemon = Pokemon(id!!, name!!, image!!, defense!!, attack!!, speed!!, date!!.toLong(), life!!, username!!)
-        Firebase.firestore.collection("users").document(pokemon.username).collection("pokemon").document(
-            pokemon.id).delete()
+        Firebase.firestore.collection("users").document(username.toString()).collection("pokemon").document(
+            id.toString()).delete()
+
+        val intent = Intent(this@MainActivity4, MainActivity2::class.java)
+        startActivity(intent)
+        finish()
     }
 }
